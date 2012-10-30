@@ -1,6 +1,6 @@
 <?php
 	$chJSON_LOCAL = file_get_contents('http://localhost/SIR1213/EURO/serveChave.php');
-	$chJSON_ESTG = file_get_contents('http://www.estg.ipvc.pt/~pmoreira/sir/euro/serveChave.php');
+	$chJSON_ESTG  = file_get_contents('http://www.estg.ipvc.pt/~pmoreira/sir/euro/serveChave.php');
 	
 /*	
 	class XPTO {

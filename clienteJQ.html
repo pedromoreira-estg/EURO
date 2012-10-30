@@ -1,0 +1,57 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+"http://www.w3.org/TR/html4/strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<title>HTML</title>
+		<meta name="author" content="Pedro Moreira" />
+		<!-- Date: 2012-10-30 -->
+		<link href="css/euro.css" rel="stylesheet"/>
+		<script type="text/javascript" src="http://code.jquery.com/jquery-1.8.2.min.js"></script>
+		<script>
+			$(document).ready(function () {
+				//debugger;
+				$("#gerador").click(getChave);
+			});
+			
+			function getChave() {
+				$.get(
+					"http://www.estg.ipvc.pt/~pmoreira/sir/euro/serveChave.php",
+					function (data) {
+						var chave = jQuery.parseJSON(data)	;
+						//alert(chave.keynumbers);
+						var divchave = $("#chaves");
+						
+						var divkey   = $("<div/>").addClass("chave");
+						var listaNum = $("<ul/>").addClass("numeros");
+						var listaEst = $("<ul/>").addClass("estrelas");
+						
+						for(var i=0; i<chave.keynumbers.length; i++) {
+							listaNum.append($('<li/>').html(chave.keynumbers[i]));
+						} 
+						for(var i=0; i<chave.keystars.length; i++) {
+							listaEst.append($('<li/>').html(chave.keystars[i]));
+						} 
+						
+						divkey.append(listaNum);
+						divkey.append(listaEst);
+						
+						divchave.append(divkey);
+						//alert(divkey.html());
+						
+					});
+				}
+			
+		</script>
+	</head>
+	<body>
+		
+		<h1 id="gerador">gerar nova chave</h1>
+		<div id="chaves">
+			
+		</div>
+
+	</body>
+</html>
+
